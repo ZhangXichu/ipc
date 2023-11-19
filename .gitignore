@@ -1,1 +1,3 @@
-/bin/
+/socket/bin/
+/shm/example/bin/
+/shm/chat/bin/

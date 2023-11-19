@@ -25,9 +25,11 @@ void* send_message(void* arg)
     char msg_s[MAX_MSG_SIZE];
     while (1) {
         // printf("Enter your message: ");
-        if (fgets(msg_s, MAX_MSG_SIZE, stdin) != NULL) {
+        if (fgets(msg_s, MAX_MSG_SIZE, stdin) != NULL) 
+        {
             pthread_mutex_lock(&mutex);
-            if (shmsg_st->msg_present == 0) {
+            if (shmsg_st->msg_present == 0) 
+            {
                 strncpy(shmsg_st->message, msg_s, MAX_MSG_SIZE);
                 shmsg_st->msg_present = 1;
             }
@@ -40,8 +42,10 @@ void* send_message(void* arg)
 void* receive_message(void* arg) {
     while (1) {
         pthread_mutex_lock(&mutex);
-        if (shmsg_st->msg_present) {
+        if (shmsg_st->msg_present) 
+        {
             printf("%s", shmsg_st->message);
+            fflush(stdout);
             shmsg_st->msg_present = 0;
         }
         pthread_mutex_unlock(&mutex);
@@ -53,7 +57,6 @@ void* receive_message(void* arg) {
 int main()
 {
     int shmid;
-    // struct shmsg* shmsg_st;
 
     pthread_t send_thread, receive_thread;
 
@@ -61,8 +64,6 @@ int main()
 
     // attach to shared memory
     shmsg_st = shmat(shmid, NULL, 0);
-
-    // char msg_s[MAX_MSG_SIZE];
 
     // Create threads
     pthread_create(&send_thread, NULL, send_message, NULL);
