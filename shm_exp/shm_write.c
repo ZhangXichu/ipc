@@ -6,6 +6,12 @@
 #include<errno.h>
 #include<stdlib.h>
 #include<unistd.h>
+/*
+code from
+https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_shared_memory.htm#:~:text=%23%20%E3%80%901%E2%80%A0Shared%20Memory%20,the%20library%20function%20ftok
+*/
+
+
 #include<string.h>
 
 #define BUF_SIZE 1024
